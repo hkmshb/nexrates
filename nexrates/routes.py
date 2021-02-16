@@ -84,4 +84,4 @@ async def exchange_rates(
 
 @router.get('/api/')
 async def api_root():
-    return {'details': f'{settings.BASE_URL}/', 'docs': f'{settings.BASE_URL}/docs/'}
+    return {'details': f'{settings.BASE_URL}/', 'docs': f'{settings.BASE_URL}/api/docs/'}

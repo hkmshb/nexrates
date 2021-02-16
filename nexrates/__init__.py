@@ -6,8 +6,12 @@ from .data import db
 from .routes import router
 from .utils import settings
 
-app = FastAPI(title='NEXRATES API')
-app.include_router(router, prefix='/api')
+TITLE = 'Naira Exchange Rates API'
+DESC = 'API service for current and historic Naira exchange rates published by CBN'
+
+
+app = FastAPI(title=TITLE, description=DESC, docs_url=None, redoc_url='/api/docs', version='v1')
+app.include_router(router)
 
 
 def get_version():
