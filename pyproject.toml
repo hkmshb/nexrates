@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "nexrates"
+version = "0.1.0.dev1"
+description = "Naira Exchange Rates API"
+authors = ["Abdulhakeem Shaibu <hkmshb@gmail.com>"]
+license = "BSD-2-Clause"
+readme = "README.rst"
+repository = "https://github.com/hkmshb/nexrates.git"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+docutils = {version = "^0.16", optional = true}
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+flake8-bugbear = "^20.11.1"
+flake8-builtins = "^1.5.3"
+flake8-comprehensions = "^3.3.1"
+flake8-isort = "^4.0.0"
+flake8-mypy = "^17.8.0"
+flake8-rst = "^0.8.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
