@@ -16,6 +16,7 @@ def configure_logging():
 
 
 class Settings(BaseSettings):
+    BASE_URL: AnyUrl = 'http://localhost:8000'
     DATABASE_URL: AnyUrl
     LOG_LEVEL: int = logging.INFO
     RATES_DOC_URL: HttpUrl

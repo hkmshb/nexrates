@@ -9,10 +9,12 @@ repository = "https://github.com/hkmshb/nexrates.git"
 
 [tool.poetry.dependencies]
 python = "^3.6"
+aiofiles = "^0.6.0"
 fastapi = "^0.63.0"
 gino = {extras = ["starlette"], version = "^1.0.1"}
 python-dotenv = "^0.15.0"
 requests = "^2.25.1"
+uvicorn = "^0.13.3"
 
 docutils = {version = "^0.16", optional = true}
 
