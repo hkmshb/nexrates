@@ -3,7 +3,7 @@ name = "nexrates"
 version = "0.1.0.dev1"
 description = "Naira Exchange Rates API"
 authors = ["Abdulhakeem Shaibu <hkmshb@gmail.com>"]
-license = "BSD-2-Clause"
+license = "BSD 2-Clause"
 readme = "README.rst"
 repository = "https://github.com/hkmshb/nexrates.git"
 
