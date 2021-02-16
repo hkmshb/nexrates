@@ -45,6 +45,7 @@ Limit results to specific exchange rates to save bandwidth with the symbols para
 
     GET /api/history?start_at=2020-01-01&end_at=2020-01-30&symbol=USD&symbol=GBP
 
+
 Stack
 -----
 
@@ -55,6 +56,7 @@ throughput. Other libraries used include:
 - `GINO <https://python-gino.org/>`_
 - `asyncpg <https://github.com/MagicStack/asyncpg>`_
 - `requests <https://requests.readthedocs.io/>`_
+- `APScheduler <https://apscheduler.readthedocs.io/>`_
 
 
 License

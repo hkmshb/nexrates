@@ -1,5 +1,6 @@
 import csv
 import enum
+import fcntl
 import io
 import logging
 from datetime import date, datetime
@@ -7,6 +8,7 @@ from decimal import Decimal, InvalidOperation
 from typing import List, Optional, Tuple
 
 import requests
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from gino.dialects.asyncpg import JSONB
 from gino.ext.starlette import Gino
 from pydantic import BaseModel
@@ -168,3 +170,25 @@ async def update_rates():
             date=day_date,
             rates={r.currency.value: r.to_dict(exclude={'currency'}) for r in pub_rates},
         )
+
+
+async def initialize_scheduler():
+    # check that tables exists
+    await db.gino.create_all()
+
+    # schedule exchange rates updates
+    try:
+        _ = open('.scheduler.lock', 'w')
+        fcntl.lockf(_.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+
+        scheduler = AsyncIOScheduler()
+        scheduler.start()
+
+        # update latest rates data
+        scheduler.add_job(update_rates, "interval", hours=24)
+
+        # fill up the database with rates
+        await db.func.count(ExchangeRates.date).gino.scalar()
+        scheduler.add_job(update_rates)
+    except BlockingIOError as ex:
+        log.warn(f'blocking io error: {ex}')

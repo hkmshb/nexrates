@@ -3,16 +3,17 @@ from importlib import metadata
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 
-from .data import db
+from .data import db, initialize_scheduler
 from .routes import router
-from .utils import BASE_DIR, settings
+from .utils import BASE_DIR, configure_logging, settings
 
 TITLE = 'Naira Exchange Rates API'
 DESC = 'API service for current and historic Naira exchange rates published by CBN'
 
-
 app = FastAPI(title=TITLE, description=DESC, docs_url=None, redoc_url='/api/docs', version='v1')
 app.include_router(router)
+
+configure_logging()
 
 
 def get_version():
@@ -23,6 +24,7 @@ def get_version():
 @app.on_event('startup')
 async def on_startup():
     await db.set_bind(settings.DATABASE_URL)
+    await initialize_scheduler()
 
 
 @app.get('/', include_in_schema=False)
