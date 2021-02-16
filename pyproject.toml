@@ -9,6 +9,11 @@ repository = "https://github.com/hkmshb/nexrates.git"
 
 [tool.poetry.dependencies]
 python = "^3.6"
+fastapi = "^0.63.0"
+gino = {extras = ["starlette"], version = "^1.0.1"}
+python-dotenv = "^0.15.0"
+requests = "^2.25.1"
+
 docutils = {version = "^0.16", optional = true}
 
 [tool.poetry.dev-dependencies]
@@ -23,3 +28,12 @@ flake8-rst = "^0.8.0"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 96
+skip-string-normalization = true
+quiet = true
+
+[tool.tox]
+legacy_tox_ini = """
+"""

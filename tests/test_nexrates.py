@@ -1,5 +1,7 @@
-from nexrates import __version__
+from nexrates import get_version
 
 
 def test_version():
-    assert __version__ == '0.1.0'
+    version = get_version()
+    assert version is not None
+    assert len(version.split('.')) in (3, 4)
