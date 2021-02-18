@@ -1,6 +1,8 @@
 
 POETRY := pipx run poetry
 SHELL := /bin/zsh
+VERSION := 0.1
+IMAGE_NAME := hazeltek/nexrates:$(VERSION)
 
 include .env
 
@@ -20,3 +22,11 @@ test: ## Run tests
 .PHONY: run-dev
 run-dev: ## Run the FastAPI server with `--reload` flag
 	$(POETRY) run uvicorn nexrates:app --reload
+
+.PHONY: docker-build
+docker-build: ## Build docker image for the application
+	docker build -t $(IMAGE_NAME) .
+
+.PHONY: docker-run
+docker-run: ## Run application from within docker
+	docker run --rm --name nexrates -p 8000:80 --env-file .env $(IMAGE_NAME)
