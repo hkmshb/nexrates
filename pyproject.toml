@@ -37,7 +37,3 @@ build-backend = "poetry.core.masonry.api"
 line-length = 96
 skip-string-normalization = true
 quiet = true
-
-[tool.tox]
-legacy_tox_ini = """
-"""
